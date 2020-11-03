@@ -52,7 +52,10 @@ namespace WeatherApp.ViewModels
 
         }
 
-       
+        public void SetTemperatureService(ITemperatureService i) {
+
+            TemperatureService = i;
+        }
 
         public bool CanGetTemp()
         {
