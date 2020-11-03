@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
+using WeatherApp.Models;
 using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xunit;
@@ -143,12 +145,15 @@ namespace WeatherStationTests
         [Fact]
         public void GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass()
         {
-            // Arrange
-
+            _sut = new TemperatureViewModel();
+            var _mock = new Mock<ITemperatureService>();
             // Act       
-
+            _mock.Setup(x => x.GetTempAsync()).Returns(Task.FromResult(new TemperatureModel()));
+            _sut.SetTemperatureService(_mock.Object);
+            _sut.GetTempCommand.Execute(string.Empty);
+            var actual = _sut.CurrentTemp;
             // Assert
-
+            Assert.NotNull(actual);
             /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
         }
 
