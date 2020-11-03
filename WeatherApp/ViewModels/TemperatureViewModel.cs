@@ -52,6 +52,8 @@ namespace WeatherApp.ViewModels
 
         }
 
+       
+
         public bool CanGetTemp()
         {
             if (TemperatureService == null)
